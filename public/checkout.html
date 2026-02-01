@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout | MZ TECH STORE</title>
+</head>
+<body>
 
+<h2>Finalizar Pagamento</h2>
+
+<label>Seu WhatsApp:</label><br>
+<input id="phone" placeholder="84xxxxxxx"><br><br>
+
+<button onclick="checkout()">Gerar Pedido</button>
+
+<pre id="result"></pre>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const category = params.get("category");
+const option = params.get("option");
+
+async function checkout() {
+  const phone = document.getElementById("phone").value;
+
+  const res = await fetch("/api/checkout", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ phone, category, option })
+  });
+
+  const data = await res.json();
+
+  document.getElementById("result").innerText =
+`Pedido criado!
+
+Valor: ${data.price} MT
+Referência: ${data.ref}
+
+Agora envie no WhatsApp:
+MPESA-${data.ref}-SEU_ID`;
+}
+</script>
+
+</body>
+</html>
