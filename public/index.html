@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>MZ TECH STORE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>MZ TECH STORE</h1>
+<p>Produtos digitais instantâneos</p>
+
+<div class="product">
+  <h3>Netflix Premium</h3>
+  <p>200 MT</p>
+  <button onclick="buy('netflix','1')">Comprar</button>
+</div>
+
+<div class="product">
+  <h3>Netflix Ultra HD</h3>
+  <p>400 MT</p>
+  <button onclick="buy('netflix','2')">Comprar</button>
+</div>
+
+<script>
+function buy(category, option) {
+  window.location.href =
+    `/checkout.html?category=${category}&option=${option}`;
+}
+</script>
+
+</body>
+</html>
